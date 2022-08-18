@@ -1,9 +1,21 @@
+import { useState } from "react";
+
 const SimpleInput = (props) => {
+  const [enteredName, setEnteredName] = useState("");
+
+  const nameChangeHandler = (event) => {
+    setEnteredName(event.target.value);
+  };
+
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(enteredName);
+  };
   return (
-    <form>
-      <div className='form-control'>
-        <label htmlFor='name'>Your Name</label>
-        <input type='text' id='name' />
+    <form onSubmit={formSubmitHandler}>
+      <div className="form-control">
+        <label htmlFor="name">Your Name</label>
+        <input type="text" id="name" onChange={nameChangeHandler} />
       </div>
       <div className="form-actions">
         <button>Submit</button>
